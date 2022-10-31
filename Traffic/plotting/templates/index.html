@@ -1,0 +1,57 @@
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Simple Sidebar - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon_index.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles_index.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'index' %}">Home</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Dashboard</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'seoulIndex' %}">서울시 자치구 통근 인구수</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'roadTraffic' %}">교통혼잡도</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'bus' %}">버스</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'subway' %}">지하철</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">사이드 메뉴</button>                       
+                    </div>
+                </nav>
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <h1 class="mt-4">Home</h1>
+                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                    <p>
+                        Make sure to keep all page content within the
+                        <code>#page-content-wrapper</code>
+                        . The top navbar is optional, and just for demonstration. Just create an element with the
+                        <code>#sidebarToggle</code>
+                        ID which will toggle the menu when clicked.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->`
+        <script src="{% static 'js/scripts_index.js' %}"></script>
+    </body>
+</html>
