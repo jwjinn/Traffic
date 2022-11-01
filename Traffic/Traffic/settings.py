@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     #plottlyDash
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
 
-    'plotting',
+    'plotting'
+
 ]
 
 MIDDLEWARE = [
@@ -85,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Traffic2',
-        'USER': 'traffic2',
-        'PASSWORD': '1234@',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': 'ec2-43-201-7-182.ap-northeast-2.compute.amazonaws.com',
         'PORT':  '3306'
     }

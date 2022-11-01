@@ -1,12 +1,93 @@
 <!DOCTYPE html>
+{%load static %}
+{%load plotly_dash%}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Simple Sidebar - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon_index.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles_index.css' %}" rel="stylesheet" />
+    </head>
 
-<h1>subway</h1>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'index' %}">Home</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Dashboard</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'seoulIndex' %}">서울시 자치구 통근 인구수</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'roadTraffic' %}">교통혼잡도</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'bus' %}">버스</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'subway' %}">지하철</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">사이드 메뉴</button>
+                    </div>
+                </nav>
 
-</body>
+                <!-- Page content-->
+                <!--이곳에서 차트-->
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                전체기간
+                            </div>
+                            <div class="card-body">
+                                {% plotly_app name="total" ratio=1 %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                기간별
+                            </div>
+                            <div class="card-body">
+                                {% plotly_app name="day" ratio=1 %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                자치구별
+                            </div>
+                            <div class="card-body">
+                                {% plotly_app name="gu" ratio=1 %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                multi
+                            </div>
+                            <div class="card-body">
+                                {% plotly_app name="multi" ratio=1 %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core theme JS-->`
+        <script src="{% static 'js/scripts_index.js' %}"></script>
+    </body>
 </html>

@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views
 
-from plotting.dash_apps import app1
+from plotting.dash_apps import app1, app2, app3, TimeToWork, RoadSpecific, RoadOverall, RoadByYear, subway0, subway1, subway2, subway3
+
 
 
 

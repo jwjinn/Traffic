@@ -2,20 +2,14 @@ from dash import Dash, html, dcc
 import plotly.express as px
 import pandas as pd
 from django_plotly_dash import DjangoDash
-from ..models import Bus
 
+
+# from Traffic.plotting.models import Bus
+from ..models import *
+
+
+# ImportError: attempted relative import with no known parent package
 app = DjangoDash('SimpleExample')
-
-datas = Bus.objects.all().values()
-# print(datas)
-dff = pd.DataFrame(datas)
-# print(dff)
-
-# print(int(dff.iloc[1,2]) + int(dff.iloc[1,3]))
-
-print(dff)
-
-
 
 
 # assume you have a "long-form" data frame
@@ -34,11 +28,6 @@ app.layout = html.Div(
 
 
     children=[
-    html.H1(children='Hello Dash'),
-
-    html.Div(children='''
-        Dash: A web application framework for your data.
-    '''),
 
     dcc.Graph(
         id='example-graph',
