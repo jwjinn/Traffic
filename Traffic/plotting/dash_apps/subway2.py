@@ -10,7 +10,7 @@ from plotly.subplots import make_subplots
 
 import datetime
 
-app = DjangoDash("gu")
+app = DjangoDash("subway2")
 
 data = Subway.objects.all().values()
 df = pd.DataFrame(data)
@@ -22,16 +22,29 @@ app.layout = html.Div([
         value="강남구",
         clearable=False,
         ),
+    dcc.RadioItems(
+        id="click",
+        options=[{"label": "승차", "value": "boarding"},
+                {"label": "하차", "value": "getoff"}],
+        value="boarding",
+        inline=True,
+    ),
     dcc.Graph(id="graph", figure={}),
 ])
 
 
-@app.callback(Output("graph", "figure"), [Input("gu", "value")])
-def cb(gu):
+@app.callback(Output("graph", "figure"), [Input("gu", "value"), Input("click", "value")])
+def cb(gu, item):
     print(gu)
     df_gu = df[df["gu_id"] == gu]
-    fig = px.line(df_gu, x="day", y="boarding")
-    fig.update_yaxes(range=[0, 18000000])
+    if item == "boarding":
+        fig = px.line(df_gu, x="day", y="boarding")
+        fig.update_layout(xaxis_title="", yaxis_title="승차")
+    elif item == "getoff":
+        fig = px.line(df_gu, x="day", y="getoff")
+        fig.update_layout(xaxis_title="", yaxis_title="승차")
+    fig.update_xaxes(visible=False)
+    
     # fig.update_xaxes(visible=False)
     return fig
 

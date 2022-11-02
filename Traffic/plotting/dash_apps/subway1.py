@@ -10,7 +10,7 @@ from plotly.subplots import make_subplots
 
 import datetime
 
-app = DjangoDash("day")
+app = DjangoDash("subway1")
 
 data = Subway.objects.all().values()
 df = pd.DataFrame(data)
@@ -18,15 +18,15 @@ df = pd.DataFrame(data)
 app.layout = html.Div([
     dcc.Dropdown(
         id="date",
-        options=[{"label": x, "value": x} for x in df["day"].unique()],
+        options=[{"label": f"{x.year}년 {x.month}월", "value": x} for x in df["day"].unique()],
         value=datetime.date(2022,9,1),
         clearable=False,
         ),
 
     dcc.RadioItems(
         id="click",
-        options=[{"label": "boarding", "value": "boarding"},
-                {"label": "getoff", "value": "getoff"}],
+        options=[{"label": "승차", "value": "boarding"},
+                {"label": "하차", "value": "getoff"}],
         value="boarding",
         inline=True,
     ),
@@ -43,10 +43,12 @@ def cb(date, item):
     df_date = df[df["day"] == datetime.date(y,m,d)]
     # print(date)
     if item == "boarding":
-        fig = px.scatter(df_date, x="gu_id", y="boarding", color="gu_id")
+        fig = px.scatter(df_date, x="gu_id", y="boarding", color="gu_id", labels={"gu_id": ""})
+        fig.update_layout(yaxis_title="승차")
     elif item == "getoff":
         fig = px.scatter(df_date, x="gu_id", y="getoff", color="gu_id")
+        fig.update_layout(yaxis_title="하차")
     fig.update_yaxes(range=[0, 18000000])
-    fig.update_traces(marker={'size': 10})
     fig.update_xaxes(visible=False)
+    
     return fig

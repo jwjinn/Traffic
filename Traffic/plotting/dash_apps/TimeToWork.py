@@ -31,8 +31,11 @@ app.layout = html.Div(
 
     children=[
 
-    dcc.RadioItems(['total', 'men', 'women'], 'total'
-                    , id='yaxis-type',
+    dcc.RadioItems([{"label": "전체", "value": 'total'}, 
+                    {"label": "남자", "value": 'men'}, 
+                    {"label": "여자", "value": 'women'}], 
+                    'total',
+                    id='yaxis-type',
                     inline=True),
 
         dcc.Graph(
@@ -48,6 +51,6 @@ def update_graph(yaxis_type):
     fig = px.bar(df, x="country",
                  y=yaxis_type,
                 barmode="group")
-
+    fig.update_layout(xaxis_title="", yaxis_title="")
 
     return fig

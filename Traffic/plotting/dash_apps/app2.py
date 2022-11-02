@@ -27,8 +27,8 @@ df = pd.merge(SeoulIndex, Coordinate, left_on='gu', right_on='gu_id')
 
 px.set_mapbox_access_token('pk.eyJ1Ijoid29vam9vMTIxIiwiYSI6ImNsOXc2bW1jdzBkNWwzb202dnV1M2I2NHMifQ.U2WIYcpIYLsVjg6gqXMQSQ')
 
-fig = px.scatter_mapbox(df, lat="latitude", lon="longitude",     color="gu", size="commute_population",
-                   color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
+fig = px.scatter_mapbox(df, lat="latitude", lon="longitude", color="gu", labels={"gu": ""},
+                    size="commute_population", color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
 
 
 app.layout = html.Div(

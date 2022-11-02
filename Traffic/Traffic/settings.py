@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Traffic2',
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'joo',
+        'PASSWORD': 'joo1234',
         'HOST': 'ec2-43-201-7-182.ap-northeast-2.compute.amazonaws.com',
         'PORT':  '3306'
     }

@@ -29,8 +29,11 @@ children=[
     ], style={'width': '48%', 'display': 'inline-block'}),
 
     html.Div([
-        dcc.Dropdown(['mean_month', 'vol_month'], 'mean_month',
-                     id = 'yaxis',
+        dcc.Dropdown([
+                    {"label": "월 평균", "value": 'mean_month'}, 
+                    {"label": "전체", "value": 'vol_month'}], 
+                    'mean_month',
+                    id = 'yaxis',
 
         ),
 
@@ -53,7 +56,7 @@ def update_graph(selectlocation, yaxis, year):
     df = Road.loc[year][Road.loc[year]['name'] == selectlocation]
 
     fig = px.line(df, x = df.index.values, y = yaxis)
-
+    fig.update_layout(xaxis_title="", yaxis_title="")
     return fig
 
 

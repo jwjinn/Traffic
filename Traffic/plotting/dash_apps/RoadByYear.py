@@ -19,7 +19,7 @@ by_year = Road[['year', 'vol_month']]
 temp = by_year.groupby('year').mean('vol_month')
 
 fig = px.line(temp, x = temp.index.values, y = 'vol_month')
-
+fig.update_layout(xaxis_title="", yaxis_title="")
 app.layout = html.Div(
 children=[
 
