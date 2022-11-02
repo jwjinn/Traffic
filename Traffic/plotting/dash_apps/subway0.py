@@ -34,6 +34,7 @@ def cb(item):
         fig = px.scatter(df_total, x="day", y="boarding", color="day")
     elif item == "Average":
         fig = px.scatter(df_total_avg, x="day", y="boarding", color="day")
+    fig.update_traces(marker={'size': 10})
     fig.update_layout(showlegend=False)
     return fig
 

@@ -13,6 +13,13 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles_index.css' %}" rel="stylesheet" />
     </head>
+
+        <script>
+        function popUp(){
+            window.open("/CovidPolicy/", "","width=300px, height=300px");
+        }
+    </script>
+
     <body>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
@@ -32,12 +39,41 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle">사이드 메뉴</button>                       
+                        <button class="btn btn-primary" id="sidebarToggle">사이드 메뉴</button>
+                        <button class="btn btn-primary" onclick="popUp();">코로나 거리두기 정책변화</button>
                     </div>
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
                     <h1 class="mt-4">Home</h1>
+
+
+                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                    <p>
+                        Make sure to keep all page content within the
+                        <code>#page-content-wrapper</code>
+                        . The top navbar is optional, and just for demonstration. Just create an element with the
+                        <code>#sidebarToggle</code>
+                        ID which will toggle the menu when clicked.
+                    </p>
+                </div>
+
+                <div class="container-fluid">
+                    <h1 class="mt-4">Home</h1>
+                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                    <p>
+                        Make sure to keep all page content within the
+                        <code>#page-content-wrapper</code>
+                        . The top navbar is optional, and just for demonstration. Just create an element with the
+                        <code>#sidebarToggle</code>
+                        ID which will toggle the menu when clicked.
+                    </p>
+                </div>
+
+                <br>
+
+                <div class="container-fluid">
+                    <h1 class="mt-4">자료 출처</h1>
                     <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
                     <p>
                         Make sure to keep all page content within the

@@ -12,6 +12,12 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon_index.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles_index.css' %}" rel="stylesheet" />
+
+                <script>
+        function popUp(){
+            window.open("/CovidPolicy/", "","width=300px, height=300px");
+        }
+    </script>
     </head>
 
     <body>
@@ -34,8 +40,11 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
                         <button class="btn btn-primary" id="sidebarToggle">사이드 메뉴</button>
+                        <button class="btn btn-primary" onclick="popUp();">코로나 거리두기 정책변화</button>
                     </div>
                 </nav>
+
+                 <h1 class="mt-4">지하철</h1>
 
                 <!-- Page content-->
                 <!--이곳에서 차트-->
@@ -43,7 +52,7 @@
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                전체기간
+                                2019부터 2022년 09월까지의 총 탑승자수 및 평균 탐승자수
                             </div>
                             <div class="card-body">
                                 {% plotly_app name="total" ratio=1 %}
@@ -53,7 +62,7 @@
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                기간별
+                                연도별, 월별 탑승자수의 비교
                             </div>
                             <div class="card-body">
                                 {% plotly_app name="day" ratio=1 %}
@@ -66,7 +75,7 @@
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                자치구별
+                                자치구별 탑승자수의 변화량
                             </div>
                             <div class="card-body">
                                 {% plotly_app name="gu" ratio=1 %}

@@ -21,3 +21,6 @@ def bus(request):
 
 def subway(request):
     return render(request, 'subway.html')
+
+def covidPolicy(request):
+    return render(request, 'CovidPolicy.html')

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-from plotting.dash_apps import app1, app2, app3, TimeToWork, RoadSpecific, RoadOverall, RoadByYear, subway0, subway1, subway2, subway3
+from plotting.dash_apps import app1, app2, app3, TimeToWork, RoadSpecific, RoadOverall, RoadByYear, subway0, subway1, subway2, subway3, RoadTable
 
 
 
@@ -20,5 +20,7 @@ urlpatterns = [
     path('bus/', views.bus, name='bus'),
 
     path('subway/', views.subway, name='subway'),
+
+    path('CovidPolicy/', views.covidPolicy, name='covidPolicy'),
 
 ]

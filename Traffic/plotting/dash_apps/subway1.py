@@ -47,5 +47,6 @@ def cb(date, item):
     elif item == "getoff":
         fig = px.scatter(df_date, x="gu_id", y="getoff", color="gu_id")
     fig.update_yaxes(range=[0, 18000000])
+    fig.update_traces(marker={'size': 10})
     fig.update_xaxes(visible=False)
     return fig
