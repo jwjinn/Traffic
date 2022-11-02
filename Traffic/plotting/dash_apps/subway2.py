@@ -39,10 +39,10 @@ def cb(gu, item):
     df_gu = df[df["gu_id"] == gu]
     if item == "boarding":
         fig = px.line(df_gu, x="day", y="boarding")
-        fig.update_layout(xaxis_title="", yaxis_title="승차")
+        fig.update_layout(yaxis_title="승차")
     elif item == "getoff":
         fig = px.line(df_gu, x="day", y="getoff")
-        fig.update_layout(xaxis_title="", yaxis_title="승차")
+        fig.update_layout(yaxis_title="승차")
     fig.update_xaxes(visible=False)
     
     # fig.update_xaxes(visible=False)
