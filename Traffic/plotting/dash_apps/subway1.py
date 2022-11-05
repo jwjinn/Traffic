@@ -14,6 +14,8 @@ app = DjangoDash("subway1")
 
 data = Subway.objects.all().values()
 df = pd.DataFrame(data)
+df["boarding"] = df["boarding"] // 10000
+df["getoff"] = df["getoff"] // 10000
 
 app.layout = html.Div([
     dcc.Dropdown(
@@ -22,6 +24,7 @@ app.layout = html.Div([
         value=datetime.date(2022,9,1),
         clearable=False,
         ),
+    html.Br(),
 
     dcc.RadioItems(
         id="click",
@@ -44,11 +47,12 @@ def cb(date, item):
     # print(date)
     if item == "boarding":
         fig = px.scatter(df_date, x="gu_id", y="boarding", color="gu_id", labels={"gu_id": ""})
-        fig.update_layout(yaxis_title="승차")
+        fig.update_layout(yaxis_title="(만명)")
     elif item == "getoff":
-        fig = px.scatter(df_date, x="gu_id", y="getoff", color="gu_id")
-        fig.update_layout(yaxis_title="하차")
-    fig.update_yaxes(range=[0, 18000000])
+        fig = px.scatter(df_date, x="gu_id", y="getoff", color="gu_id", labels={"gu_id": ""})
+        fig.update_layout(yaxis_title="(만명)")
+    fig.update_yaxes(range=[0, 1800])
     fig.update_xaxes(visible=False)
-    
+    fig.update_traces(hovertemplate="%{x}"+"<br>%{y}만명")
+    fig.update_yaxes(tickformat=",")
     return fig

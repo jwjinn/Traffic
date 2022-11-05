@@ -16,17 +16,6 @@ Time = pd.DataFrame(Time)
 
 df = Time
 
-# print(df)
-# print(df.info())
-
-# df = pd.DataFrame({
-#     "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-#     "Amount": [4, 1, 2, 2, 4, 5],
-#     "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-# })
-
-# fig = px.bar(df, x="country", y="total", barmode="group")
-
 app.layout = html.Div(
 
     children=[
@@ -49,8 +38,8 @@ app.layout = html.Div(
 def update_graph(yaxis_type):
 
     fig = px.bar(df, x="country",
-                 y=yaxis_type,
+                y=yaxis_type,
                 barmode="group")
-    fig.update_layout(xaxis_title="", yaxis_title="")
-
+    fig.update_layout(xaxis_title="", yaxis_title="(시간)")
+    fig.update_traces(hovertemplate="국가: %{x}"+"<br>출퇴근시간: %{y}시간")
     return fig

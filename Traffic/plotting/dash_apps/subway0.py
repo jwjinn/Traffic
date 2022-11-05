@@ -12,10 +12,16 @@ data = Subway.objects.all().values()
 data_avg = Avgsubway.objects.all().values()
 df = pd.DataFrame(data)
 df_avg = pd.DataFrame(data_avg)
+df["day"] = df["day"].apply(str)
+df["day"] = df["day"].str[:7]
+df_avg["day"] = df["day"].apply(str)
+df_avg["day"] = df["day"].str[:7]
 df_total = df.groupby(by=["day"]).sum().reset_index()
 df_total["total"] = df_total["boarding"] + df_total["getoff"]
 df_total_avg = df_avg.groupby(by=["day"]).sum().reset_index()
 df_total_avg["total"] = df_total_avg["boarding"] + df_total_avg["getoff"]
+df_total["total"] = df_total["total"] // 10000
+df_total_avg["total"] = df_total_avg["total"] // 10000
 
 
 app.layout = html.Div([
@@ -39,8 +45,10 @@ def cb(item):
         fig = px.scatter(df_total_avg, x="day", y="total", color="day")
     fig.update_layout(
                     xaxis_title="", 
-                    yaxis_title="", 
+                    yaxis_title="(만명)", 
                     showlegend=False)
-    
+    fig.update_yaxes(tickformat=",")
+    fig.update_traces(hovertemplate="인구수: %{y}만명")
+
     return fig
 

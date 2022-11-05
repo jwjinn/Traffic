@@ -1,19 +1,17 @@
 import pandas as pd
-import dash
-from dash import Dash, dcc, html, Input, Output
+import plotly.express as px
+
+from dash import dcc, html, Input, Output
 from django_plotly_dash import DjangoDash
 from ..models import Subway
 
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-
-import datetime
 
 app = DjangoDash("subway2")
 
 data = Subway.objects.all().values()
 df = pd.DataFrame(data)
+df["boarding"] = df["boarding"] // 10000
+df["getoff"] = df["getoff"] // 10000
 
 app.layout = html.Div([
     dcc.Dropdown(
@@ -22,6 +20,7 @@ app.layout = html.Div([
         value="강남구",
         clearable=False,
         ),
+    html.Br(),
     dcc.RadioItems(
         id="click",
         options=[{"label": "승차", "value": "boarding"},
@@ -38,13 +37,15 @@ def cb(gu, item):
     print(gu)
     df_gu = df[df["gu_id"] == gu]
     if item == "boarding":
-        fig = px.line(df_gu, x="day", y="boarding")
-        fig.update_layout(yaxis_title="승차")
+        fig = px.line(df_gu, x="day", y="boarding", line_shape='spline')
+        fig.update_layout(xaxis_title="", yaxis_title="(만명)", hovermode="x")
     elif item == "getoff":
-        fig = px.line(df_gu, x="day", y="getoff")
-        fig.update_layout(yaxis_title="승차")
+        fig = px.line(df_gu, x="day", y="getoff", line_shape='spline')
+        fig.update_layout(xaxis_title="", yaxis_title="(만명)", hovermode="x")
     fig.update_xaxes(visible=False)
+    fig.update_yaxes(tickformat=",")
+    fig.update_traces(hovertemplate="%{x}"+"<br>%{y}만명")
     
-    # fig.update_xaxes(visible=False)
+    
     return fig
 

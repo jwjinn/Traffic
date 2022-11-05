@@ -47,9 +47,12 @@ def update_graph(yaxis_type):
 
     # fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
     fig = px.bar(df, x="gu",
-                 y=yaxis_type,
-                barmode="group")
-    fig.update_layout(xaxis_title="", yaxis_title="")
+                y=yaxis_type,
+                barmode="group",
+                )
+    fig.update_layout(xaxis_title="", yaxis_title="(명)")
+    fig.update_yaxes(tickformat=",")
+    fig.update_traces(hovertemplate="%{x}"+"<br>%{y}명")
     # fig = px.pie(df, values = yaxis_type, names='gu')
     #
     # fig = px.line(df, x = 'gu', y = yaxis_type)
@@ -67,8 +70,9 @@ def update_graph(yaxis_type):
     #              y=yaxis_type,
     #              color="gu", barmode="group")
 
-    fig = px.pie(df, values = yaxis_type, names='gu')
-
+    fig = px.pie(df, values = yaxis_type, names='gu',
+                custom_data=["gu", yaxis_type])
+    fig.update_traces(hovertemplate="%{customdata[0]}명")
 
 
     return fig

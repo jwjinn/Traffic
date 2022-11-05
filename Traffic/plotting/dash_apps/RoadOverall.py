@@ -41,7 +41,9 @@ def update_graph(selectlocation):
 
 
     fig = px.line(Road[Road['name'] == selectlocation], x = 'day', y = 'mean_month')
-
+    fig.update_layout(xaxis_title="", yaxis_title="(대)")
+    fig.update_yaxes(tickformat=",")
+    fig.update_traces(hovertemplate="%{x}"+"<br>%{y}대")
     return fig
 
 

@@ -28,14 +28,15 @@ df = pd.merge(SeoulIndex, Coordinate, left_on='gu', right_on='gu_id')
 px.set_mapbox_access_token('pk.eyJ1Ijoid29vam9vMTIxIiwiYSI6ImNsOXc2bW1jdzBkNWwzb202dnV1M2I2NHMifQ.U2WIYcpIYLsVjg6gqXMQSQ')
 
 fig = px.scatter_mapbox(df, lat="latitude", lon="longitude", color="gu", labels={"gu": ""},
-                    size="commute_population", color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
-
+                    size="commute_population", color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10,
+                    hover_data={"latitude":False, "longitude":False,},
+                    custom_data=["gu", "commute_population"]
+                                )
+fig.update_traces(hovertemplate="%{customdata[0]}"+"<br>%{customdata[1]}명")
 
 app.layout = html.Div(
 
     # style={"background-color":"red", "overflow": "auto"},
-
-
 
     children=[
 

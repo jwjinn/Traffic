@@ -7,12 +7,59 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Simple Sidebar - Start Bootstrap Template</title>
+        <title>시각화 프로젝트</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon_index.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles_index.css' %}" rel="stylesheet" />
-
+        <style>
+            a {
+                text-decoration: none;
+            }
+            button {
+                    position: relative;
+                    height: 50px;
+                    width: 200px;
+                    border: 0;
+                    border-radius: 5px;
+                    text-transform: uppercase;
+                    font-size: 1.1em;
+                    letter-spacing: 0.2em;
+                    overflow: hidden;
+                    box-shadow: 0 4px 12px 0 rgba(152, 160, 180, 10);
+                    z-index: 1;
+                    color: #fff;
+                }
+        
+            .button-one {
+                }
+            
+            .fill-one {
+                    position: absolute;
+                    background-image: linear-gradient(to right, #E040FB, #00BCD4);
+                    height: 70px;
+                    width: 420px;
+                    border-radius: 5px;
+                    margin: -40px 0 0 -140px;
+                    z-index: -1;
+                    transition: all 0.4s ease;
+                }
+                  
+            .container-one:hover .fill-one {
+                    -webkit-transform: translateX(100px);
+                    -moz-transform: translateX(100px);
+                    transform: translateX(100px);
+                }
+        </style>
+        <style>
+            * {
+                font-family: 'Do Hyeon', sans-serif;
+            }
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/09f5f7d3fa.js" crossorigin="anonymous"></script>
         <script>
         function popUp(){
             window.open("/CovidPolicy/", "","width=300px, height=300px");
@@ -27,34 +74,46 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                <div class="sidebar-heading border-bottom bg-light">
+                    <img src="{% static 'assets/logo.png' %}" alt="logo" style="display: block; margin: 0 auto;">
+                </div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'index' %}">Home</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Dashboard</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'seoulIndex' %}">서울시 자치구 통근 인구수</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'roadTraffic' %}">교통혼잡도</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'bus' %}">버스</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'subway' %}">지하철</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'index' %}"><i class="fa-solid fa-chart-line"></i> DashBoard</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'seoulIndex' %}"><i class="fa-solid fa-building-user"></i> 통근 인구수</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'roadTraffic' %}"><i class="fa-solid fa-traffic-light"></i> 교통혼잡도</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'bus' %}"><i class="fa-solid fa-van-shuttle"></i> 버스</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'subway' %}"><i class="fa-solid fa-train"></i> 지하철</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}"><i class="fa-solid fa-database"></i> 데이터</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle">사이드 메뉴</button>
-                        <button class="btn btn-primary" onclick="popUp();">코로나 거리두기 정책변화</button>
+                    <div class="container-fluid d-flex justify-content-between">
+                        <div>
+                            <button id="sidebarToggle">사이드 메뉴
+                                <div class="fill-one"></div>
+                            </button>
+                            <button onclick="popUp();">거리두기 정책변화
+                                <div class="fill-one"></div>
+                            </button>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-crown"></i> 조장: 주우진 &nbsp;
+                            <i class="fa-solid fa-people-group"></i> 팀원: 김철현 박순지 채지훈
+                        </div>
                     </div>
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">자료에 관해서</h1>
-
+                    <h1 class="mt-4">데이터</h1>
+                    <br>
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
+                                        <i class="fa-solid fa-building-user"></i>
                                         <strong>서울시 자치구 통근 인구수, OECD 평균 출퇴근 시간</strong>
                                     </div>
                                     <div class="card-body">
@@ -72,7 +131,7 @@
                                         <p>
                                         <a href = "https://www.oecd.org/els/family/database.htm">OECD평균 출퇴근 시간</a>
 
-                                         The labour market position of families (LMF)
+                                        The labour market position of families (LMF)
                                             <br>
                                             LMF2.6 Time spent travelling to and from work
                                     </p>
@@ -96,7 +155,7 @@
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
+                                        <i class="fa-solid fa-traffic-light"></i>
                                         <strong>교통 혼잡도</strong>
                                     </div>
                                     <div class="card-body">
@@ -156,7 +215,7 @@
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
+                                        <i class="fa-solid fa-van-shuttle"></i>
                                         <strong>버스</strong>
                                     </div>
                                     <div class="card-body">
@@ -181,7 +240,7 @@
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
+                                        <i class="fa-solid fa-train"></i>
                                         <strong>지하철</strong>
                                     </div>
                                     <div class="card-body">

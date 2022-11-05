@@ -56,7 +56,9 @@ def update_graph(selectlocation, yaxis, year):
     df = Road.loc[year][Road.loc[year]['name'] == selectlocation]
 
     fig = px.line(df, x = df.index.values, y = yaxis)
-    fig.update_layout(xaxis_title="", yaxis_title="")
+    fig.update_layout(xaxis_title="", yaxis_title="(대)")
+    fig.update_yaxes(tickformat=",")
+    fig.update_traces(hovertemplate="%{x}"+"<br>%{y}대")
     return fig
 
 

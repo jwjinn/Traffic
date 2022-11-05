@@ -17,19 +17,20 @@ Road['year'] = Road['day'].dt.year
 by_year = Road[['year', 'vol_month']]
 
 temp = by_year.groupby('year').mean('vol_month')
+temp = temp.astype({"vol_month": int})
 
-fig = px.line(temp, x = temp.index.values, y = 'vol_month')
-fig.update_layout(xaxis_title="", yaxis_title="")
+fig = px.line(temp, x = temp.index.values, y = 'vol_month', markers=True)
+fig.update_layout(xaxis_title="", yaxis_title="(대)")
+fig.update_yaxes(tickformat=",")
+fig.update_traces(hovertemplate="%{x}년도"+"<br>연평균 통행량: %{y}대")
 app.layout = html.Div(
-children=[
-
     dcc.Graph(
         id='example-graph',
         figure=fig,
         # style={'width': '90px', 'height' : '500px'}
     )
 
-])
+)
 
 
 
